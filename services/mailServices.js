@@ -3,6 +3,7 @@ const mailer = require("nodemailer");
 module.exports = (fullname, email, title, message) =>{
     const smtp = mailer.createTransport({
         host: "smtp.office365.com",
+        name: "JN",
         port: 587,
         secure: false,
         auth:{
@@ -12,7 +13,7 @@ module.exports = (fullname, email, title, message) =>{
     })
     const mail = {
         from: email,
-        to: "jn.e-social@hotmail.com",
+        to: process.env.USER_EMAIL_SMTP,
         subject: `Email enviado por ${fullname} - ${title}`,
         text: message
     }

@@ -1,12 +1,14 @@
 const express = require("express");
-
 const app = express();
-app.use(require("cors")());
+
+const cors = require("cors");
+app.use(cors());
+
 app.use(express.json());
 
-const port = process.env.PORT || 4000;
+const port = 5000;
 
-app.post("/email", (req, res, next) =>{
+app.post("/email", (req, res) =>{
     const fullname = req.body.fullname;
     const email = req.body.email;
     const title = req.body.title;
