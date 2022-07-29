@@ -1,4 +1,8 @@
 const mailer = require("nodemailer");
+require('dotenv').config();
+
+const emailEnvio = process.env.USER_EMAIL_SMTP;
+const senhaEnvio = process.env.USER_PASS_SMTP;
 
 module.exports = (fullname, email, title, message) =>{
     const smtp = mailer.createTransport({
@@ -7,13 +11,14 @@ module.exports = (fullname, email, title, message) =>{
         port: 587,
         secure: false,
         auth:{
-            user: process.env.USER_EMAIL_SMTP,
-            pass: process.env.USER_PASS_SMTP
+            user: emailEnvio,
+            pass: senhaEnvio
         }
     })
     const mail = {
-        from: email,
-        to: process.env.USER_EMAIL_SMTP,
+        from: emailEnvio,
+        sender: email,
+        to: "jn.e-social@hotmail.com",
         subject: `Email enviado por ${fullname} - ${title}`,
         text: message
     }
