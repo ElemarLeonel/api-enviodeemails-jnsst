@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const emailEnvio = process.env.USER_EMAIL_SMTP;
 const senhaEnvio = process.env.USER_PASS_SMTP;
+const emailAReceber = process.env.SEND_EMAIL_TO;
 
 module.exports = (fullname, email, title, message) =>{
     const smtp = mailer.createTransport({
@@ -18,7 +19,7 @@ module.exports = (fullname, email, title, message) =>{
     const mail = {
         from: emailEnvio,
         sender: email,
-        to: "jn.e-social@hotmail.com",
+        to: emailAReceber,
         subject: `Email enviado por ${fullname} - ${title}`,
         text: message
     }
